@@ -1,10 +1,14 @@
 from tkinter import *
+import random
 
 top = Tk()
 playList = []
+myRolls = []
+rollTimes = 0
+dieType = 0
 
 def results():
-   print(playlist)
+   print(playList)
 
 
 
@@ -56,30 +60,51 @@ def week1():
     B3 = Button(text = "Export List", bg = "white", command = exportList)
     B3.grid(column = 0, row = 4)
     
-    Bclear = Buutton(text = " mainMenu ", bg = "white", command = mainMenu)
-    Bclear.grid(colunm = 3, row = 1)
+    Bclear = Button(text = " mainMenu ", bg = "white", command = mainMenu)
+    Bclear.grid(column = 3, row = 1)
 
 def week2():
-    clearWindow()
-    L1W2 = Lable(top, text = "Dice Roller Program")
-    L1W2.grid(column = 0, row = 1)
-    
-    L2W2 = Lable(top, text = "How many sides?")
-    L2W2.grid(column = 0, row = 2)
-    
-    L3W2 = Lable(top, text = "How many rolls?")
-    L3W2.grid(column = 2, row = 2)
-    
-    E1W2 = Entry(top, bd = 5)
-    E1W2.grid(column = 0, row = 3)
-    
-    E2W2 = Entry(top, bd = 5)
-    E2W2.grid(column = 2, row = 3)
-    
-    B1W2 = Button(text = "Roll", bg = "Yellow")
-    B1W2.grid(column = 2, row = 4)
+   def rollDice():
+      #update out varuble data
+      dieType = E1W2.get()
+      rollTimes = E2W2.get()
+      #clear window AFTER pulling entry data
+      clearWindow()
+      
+      #calculate dice rolls
+      for x in range(0, int(rollTimes)):
+         myRolls.append(random.randint(1, int(dieType)))
+         
+      #display dice rolls and present an exit button
+      L4W2 = Label(top, text = "Here are your roills!")
+      L4W2.grid(column = 0, row = 1)
+      #this one will use a .format() statement
+      L5W2 = Label(top, text = "{}".format(myRolls))
+      L5W2.grid(column = 0, row = 1)
+      
+      B2W2 = Button(text = "Main Menu", bg = "Yellow", command = mainMenu)
+      B2W2.grid(column = 0, row = 3)
 
-    #to add: roll function and exit button
+   clearWindow()
+   L1W2 = Label(top, text = "Dice Roller Program")
+   L1W2.grid(column = 0, row = 1)
+   
+   L2W2 = Label(top, text = "How many sides?")
+   L2W2.grid(column = 0, row = 2)
+    
+   L3W2 = Label(top, text = "How many rolls?")
+   L3W2.grid(column = 2, row = 2)
+    
+   E1W2 = Entry(top, bd = 5)
+   E1W2.grid(column = 0, row = 3)
+    
+   E2W2 = Entry(top, bd = 5)
+   E2W2.grid(column = 2, row = 3)
+    
+   B1W2 = Button(text = "Roll", bg = "Yellow", command = rollDice)
+   B1W2.grid(column = 2, row = 4)
+
+   #to add: roll function and exit button
 
 if __name__ == "__main__":
     mainMenu()
