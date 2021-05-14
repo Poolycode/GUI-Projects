@@ -14,7 +14,7 @@ def results():
 
 def exportList():
     with open('test.txt', 'w') as f:
-        for item in playlist:
+        for item in playList:
             f.write("%s\n" % item)
 
 def clearWindow():
